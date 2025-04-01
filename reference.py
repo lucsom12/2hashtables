@@ -2,6 +2,7 @@ import sys
 
 from chaininghashtable import ChainingHashTable
 from linearprobinghashtable import LinearProbingHashTable
+from quadraticprobinghashtable import QuadraticProbingHashTable
 
 # read words from input, one word per line
 # then use a dictionary to count which word is most frequent
@@ -37,7 +38,7 @@ from linearprobinghashtable import LinearProbingHashTable
 # print(word, count)
 
 
-d = LinearProbingHashTable(10000000, 0.35)
+d = QuadraticProbingHashTable(1000, 0.6)
 
 i = 0
 

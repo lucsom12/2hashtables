@@ -47,7 +47,7 @@ class LinearProbingHashTable:
         return None
 
     def insert(self, key, value):        
-        if self.load / len(self.keys) >= self.max_lf:
+        while self.load / len(self.keys) >= self.max_lf:
             self.resize()
 
         hash_idx = self.hash(key)
