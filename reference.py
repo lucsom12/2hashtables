@@ -38,7 +38,7 @@ from quadraticprobinghashtable import QuadraticProbingHashTable
 # print(word, count)
 
 
-d = QuadraticProbingHashTable(1000, 0.6)
+d = QuadraticProbingHashTable(2**20, 0.35)
 
 i = 0
 

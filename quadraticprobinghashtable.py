@@ -6,12 +6,16 @@ class QuadraticProbingHashTable:
         self.max_lf = max_lf
 
     def hash(self, key) -> int:
-        return abs(hash(key)) % len(self.keys)
-
+        return abs(hash(key)) & (len(self.keys) - 1)
+    
     def resize(self):
         old_keys = self.keys
         old_values = self.values
+        # new_size = len(self.keys) * 2
         new_size = len(self.keys) * 2
+        # Ensure the new size is a power of 2
+        if new_size & (new_size - 1) != 0:  # if not a power of 2
+            new_size = 1 << (new_size.bit_length())  # round up to the next power of 2
         self.keys = [None] * new_size
         self.values = [None] * new_size
         self.load = 0
@@ -28,7 +32,7 @@ class QuadraticProbingHashTable:
         while self.keys[hash_idx] is not None:
             if self.keys[hash_idx] == key:
                 return True
-            hash_idx = (hash_idx + i*i) % len(self.keys)
+            hash_idx = (hash_idx + i*i) & (len(self.keys) - 1)
             i += 1
             if hash_idx == start_idx:  
                 return False  
@@ -43,7 +47,7 @@ class QuadraticProbingHashTable:
         while self.keys[hash_idx] is not None:
             if self.keys[hash_idx] == key:
                 return self.values[hash_idx]
-            hash_idx = (hash_idx + i*i) % len(self.keys)
+            hash_idx = (hash_idx + i*i) & (len(self.keys) - 1)
             i += 1
             if hash_idx == start_idx:  
                 return None  
@@ -58,7 +62,7 @@ class QuadraticProbingHashTable:
 
         i = 1
         while self.keys[hash_idx] is not None and self.keys[hash_idx] != key:
-            hash_idx = (hash_idx + i*i) % len(self.keys)
+            hash_idx = (hash_idx + i*i) & (len(self.keys) - 1)
             i += 1
 
         if self.keys[hash_idx] is None:
@@ -75,7 +79,7 @@ class QuadraticProbingHashTable:
         while self.keys[hash_idx] is not None:
             if self.keys[hash_idx] == key:
                 break
-            hash_idx = (hash_idx + i*i) % len(self.keys)
+            hash_idx = (hash_idx + i*i) & (len(self.keys) - 1)
             i += 1
             if hash_idx == start_idx:  
                 return  
@@ -90,14 +94,14 @@ class QuadraticProbingHashTable:
         
         
         i = 1
-        next_idx = (hash_idx + i*i) % len(self.keys)
+        next_idx = (hash_idx + i*i) & (len(self.keys) - 1)
         while self.keys[next_idx] is not None:
             reinsert_key, reinsert_value = self.keys[next_idx], self.values[next_idx]
             self.keys[next_idx] = None
             self.values[next_idx] = None
             self.load -= 1  
             self.insert(reinsert_key, reinsert_value) 
-            next_idx = (next_idx + i*i) % len(self.keys)
+            next_idx = (next_idx + i*i) & (len(self.keys) - 1)
             i += 1
 
     def get_keys(self):

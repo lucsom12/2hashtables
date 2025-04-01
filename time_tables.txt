@@ -1,0 +1,10 @@
+Chaining (size 1000000): 5.77s user 0.09s system 98% cpu 5.930 total
+
+
+Linear (size 1000000, lf 0.35): 4.68s user 0.10s system 98% cpu 4.833 total
+
+
+Quadratic (size 1000000, lf 0.35): 4.59s user 0.07s system 99% cpu 4.705 total
+
+
+Det beror mycket på hur man resizear i probing, om man hittar en effektiv faktor i de kan de bli väldigt effektiva.
