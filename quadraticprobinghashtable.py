@@ -1,5 +1,7 @@
 class QuadraticProbingHashTable:
     def __init__(self, max_size, max_lf):
+        if max_size & (max_size - 1) != 0:  # if not a power of 2
+            max_size = 1 << (max_size.bit_length())
         self.keys = [None] * max_size
         self.values = [None] * max_size
         self.load = 0
