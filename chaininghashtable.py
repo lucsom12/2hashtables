@@ -81,7 +81,7 @@ class ChainingHashTable:
             prev = node
             node = node.next
 
-    def keys(self):
+    def get_keys(self):
         keys = []
         for i in range(len(self.table)):
             node = self.table[i] 
@@ -90,7 +90,7 @@ class ChainingHashTable:
                 node = node.next
         return keys
                 
-    def values(self):
+    def get_values(self):
         values = []
 
         for i in range(len(self.table)):
@@ -100,3 +100,5 @@ class ChainingHashTable:
                 node = node.next
 
         return values
+    
+    

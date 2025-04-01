@@ -5,7 +5,7 @@ from linearprobinghashtable import LinearProbingHashTable
 
 
 def main():
-    table = LinearProbingHashTable(234567, 1)
+    table = LinearProbingHashTable(4, 1)
     table.insert("Luc", 68)
     table.insert("Ludde", 4)
     table.insert("Jörgen", 7)
@@ -18,6 +18,10 @@ def main():
     print(table.get("Luc"))
     print(table.get("Jörgen"))
     print(table.get("Hasse"))
+    table.remove("Hasse")
+    print(table.get("Hasse"))
+    
+    
 
 
     # print("testing hash table")

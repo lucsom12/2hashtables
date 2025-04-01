@@ -1,6 +1,7 @@
 import sys
 
 from chaininghashtable import ChainingHashTable
+from linearprobinghashtable import LinearProbingHashTable
 
 # read words from input, one word per line
 # then use a dictionary to count which word is most frequent
@@ -36,7 +37,7 @@ from chaininghashtable import ChainingHashTable
 # print(word, count)
 
 
-d = ChainingHashTable(10000000)
+d = LinearProbingHashTable(10000000, 0.35)
 
 i = 0
 
@@ -55,9 +56,9 @@ for line in sys.stdin:
 		d.insert(word, 1) # d[word] = 1
 	i += 1
 
-(count, word) = max(zip(d.values(), d.keys()))
+(count, word) = max(zip(d.get_values(), d.get_keys()))
 
-keys = d.keys()
+keys = d.get_keys()
 
 for key in keys:
 	if d.get(key) == count and key < word:
