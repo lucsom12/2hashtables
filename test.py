@@ -13,6 +13,7 @@ def main():
     table.insert("Hasse", 53)
 
     print(table.get_keys())
+    
 
     print(table.get("Ludde"))
     print(table.get("Luc"))
